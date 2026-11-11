@@ -322,9 +322,7 @@ async function boot(){const w=Date.now();setTimeout(()=>{const s=$("splash");if(
  try{user=await claude.use("user");db=await claude.use("db");room=await claude.use("room")}catch(e){}
  if(!db||!user){user=LUSER;const _fb=await fbInit();db=_fb?FBDB:LDB;room=_fb?fbRoom():LROOM;toast(_fb?"Подключено к Firebase":"Локальный режим: данные в этом браузере")}
  let id=await user.id();const AS=LS.g("as");if(AS)id=AS;ME={id};try{OWN=await user.isOwner()}catch(e){}
- db.collection("users").onSnapshot(s=>{USERS={};s.docs.forEach(d=>USERS[d.id]=Object.assign({id:d.id},d.data()));const _srv=!(s.metadata&&s.metadata.fromCache);if(_srv)window.USR_OK=1;if(ME.reg===undefined&&_srv){ME.reg=!!USERS[id];afterLoad(w)}if(USERS[id]&&!window.GATE)ME=Object.assign(ME,USERS[id],{reg:true});if(ME.reg){renderMe();renderList();if(CUR&&USERS[CUR])chatHeader()}});
- setTimeout(()=>{if(ME.reg===undefined){ME.reg=false;afterLoad(w)}},4000)}
-function afterLoad(w){const S=(()=>{try{return JSON.parse(LS.g("sess")||"null")}catch(e){return null}})();setTimeout(()=>{$("splash").style.opacity=0;setTimeout(()=>$("splash").classList.add("hide"),800);
+ SR_OK=1;if(ME.reg===undefined&&_srv){ME.reg=!!USERS[id];afterLoad(w)}if(USERS[id]&&!window.GATE)ME=Object.assign(ME,USERS[id],{reg:true});if(ME && ME.reg){renderMe();renderList();if(CUR&&USERS[CUR])chatHeader()}});
  if(ME.reg){gateCheck()}else{LS.s("fa","0");$("auth").classList.remove("hide");showSaved()}},Math.max(0,300))}
 /* ---- Вход и защита аккаунта ----
    Свой трастнутый браузер входит без предупреждений. Новое устройство входит по PIN,
