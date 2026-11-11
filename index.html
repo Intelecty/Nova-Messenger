@@ -313,7 +313,7 @@ function fbWrap(fdb,fs){
  return {collection:coll}}
 function fbRoom(){const t0=Date.now();const C=n=>FBDB.collection("rt_"+n);
  return {emit:(name,data)=>{const id=Math.random().toString(36).slice(2)+Date.now().toString(36);C(name).doc(id).set({data:data,t:Date.now()}).then(()=>setTimeout(()=>C(name).doc(id).delete().catch(()=>0),20000)).catch(()=>0)},
-  on:(name,fn)=>{const seen=new Set();C(name).onSnapshot(s=>s.docs.forEach(d=>{const v=d.data()||{};if(seen.has(d.id))return;seen.add(d.id);if((v.t||0)<t0-2000)return;fn({data:v.data})}))}}}
+  on:(name,fn)=>{const seen=new Seif(ME && ME.reg){t();C(name).onSnapshot(s=>s.docs.forEach(d=>{const v=d.data()||{};if(seen.has(d.id))return;seen.add(d.id);if((v.t||0)<t0-2000)return;fn({data:v.data})}))}}}
   const LS = { g: k => { try { return STORE.getItem(k) } catch(e) { return null } }, s: (k,v) => { try { STORE.setItem(k,v) } catch(e) {} } };
 const LCH=(typeof BroadcastChannel!=="undefined")?new BroadcastChannel("nova-local-room"):null;
 const LROOM={emit:(name,data)=>{if(LCH)LCH.postMessage({name,data})},on:(name,fn)=>{if(LCH)LCH.addEventListener("message",e=>{if(e.data&&e.data.name===name)fn({data:e.data.data})})}};
@@ -322,8 +322,8 @@ async function boot(){const w=Date.now();setTimeout(()=>{const s=$("splash");if(
  try{user=await claude.use("user");db=await claude.use("db");room=await claude.use("room")}catch(e){}
  if(!db||!user){user=LUSER;const _fb=await fbInit();db=_fb?FBDB:LDB;room=_fb?fbRoom():LROOM;toast(_fb?"Подключено к Firebase":"Локальный режим: данные в этом браузере")}
  let id=await user.id();const AS=LS.g("as");if(AS)id=AS;ME={id};try{OWN=await user.isOwner()}catch(e){}
- SR_OK=1;if(ME.reg===undefined&&_srv){ME.reg=!!USERS[id];afterLoad(w)}if(USERS[id]&&!window.GATE)ME=Object.assign(ME,USERS[id],{reg:true});if(ME && ME.reg){renderMe();renderList();if(CUR&&USERS[CUR])chatHeader()});
- if(ME.reg){gateCheck()}else{LS.s("fa","0");$("auth").classList.remove("hide");showSaved()}},Math.max(0,300))}
+ SR_SR_OK=1;if(ME.reg===undefined&&_srv){ME.reg=!!USERS[id];afterLoad(w)}if(USERS[id]&&!window.GATE)ME=Object.assign(ME,USERS[id],{reg:true});if(ME && ME.reg){renderMe();renderList();if(CUR&&USERS[CUR])chatHeader()}});
+if(ME && ME.reg){gateCheck()}else{LS.s("fa","0");$("auth").classList.remove("hide");showSaved()},Math.max(0,300)})
 /* ---- Вход и защита аккаунта ----
    Свой трастнутый браузер входит без предупреждений. Новое устройство входит по PIN,
    владелец получает предупреждение (users/{id}/alerts). «Нет» выкидывает вошедшего и требует PIN,
