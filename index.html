@@ -314,6 +314,7 @@ function fbWrap(fdb,fs){
 function fbRoom(){const t0=Date.now();const C=n=>FBDB.collection("rt_"+n);
  return {emit:(name,data)=>{const id=Math.random().toString(36).slice(2)+Date.now().toString(36);C(name).doc(id).set({data:data,t:Date.now()}).then(()=>setTimeout(()=>C(name).doc(id).delete().catch(()=>0),20000)).catch(()=>0)},
   on:(name,fn)=>{const seen=new Set();C(name).onSnapshot(s=>s.docs.forEach(d=>{const v=d.data()||{};if(seen.has(d.id))return;seen.add(d.id);if((v.t||0)<t0-2000)return;fn({data:v.data})}))}}}
+  const LS = { g: k => { try { return STORE.getItem(k) } catch(e) { return null } }, s: (k,v) => { try { STORE.setItem(k,v) } catch(e) {} } };
 const LCH=(typeof BroadcastChannel!=="undefined")?new BroadcastChannel("nova-local-room"):null;
 const LROOM={emit:(name,data)=>{if(LCH)LCH.postMessage({name,data})},on:(name,fn)=>{if(LCH)LCH.addEventListener("message",e=>{if(e.data&&e.data.name===name)fn({data:e.data.data})})}};
 
