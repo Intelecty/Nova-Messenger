@@ -266,7 +266,14 @@ const $=s=>document.getElementById(s),app=$("app");let ME=null,CUR=null,OWN=fals
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 window.addEventListener("error",e=>{try{const s=document.getElementById("splash");if(s&&!s.classList.contains("hide")){s.innerHTML='<div class="logo">⚠️</div><h1>Ошибка запуска</h1><div class="mu" style="color:#fffa;max-width:90vw;word-break:break-word">'+String(e.message||e).slice(0,240)+'</div>'}}catch(x){}});
 /* ---- НАСТРОЙКИ FIREBASE: вставьте свои ключи из консоли Firebase (Project settings → Your apps). Пусто = локальный режим ---- */
-const FIREBASE_CONFIG={apiKey:"",authDomain:"",projectId:"",storageBucket:"",messagingSenderId:"",appId:""};
+const FIREBASE_CONFIG = {
+    apiKey: "AIzaSyDRMJDF1HK2ZHQIX-B6NYApwPVkDDRY3eg",
+    authDomain: "nova-messenger-14e5a.firebaseapp.com",
+    projectId: "nova-messenger-14e5a",
+    storageBucket: "nova-messenger-14e5a.firebasestorage.app",
+    messagingSenderId: "1034910628247",
+    appId: "1:1034910628247:web:04f82c9d06c0d532b12cd2"
+};
 const LOCAL=(typeof claude==="undefined");const STORE=(LOCAL&&!FIREBASE_CONFIG.projectId)?sessionStorage:localStorage;
 const LS={g:k=>{try{return STORE.getItem(k)}catch(e){return null}},s:(k,v)=>{try{STORE.setItem(k,v)}catch(e){}}};
 const GRAD=["linear-gradient(135deg,#6c5ce7,#00b8d9)","linear-gradient(135deg,#ff6b6b,#feca57)","linear-gradient(135deg,#11998e,#38ef7d)","linear-gradient(135deg,#232526,#414345)","linear-gradient(135deg,#f953c6,#b91d73)","linear-gradient(135deg,#0f2027,#2c5364)"];
