@@ -611,10 +611,10 @@ h1,h2,h3,b,strong,.it b,.lrow b,#cNm,#lbnm,.mini-nm{font-weight:600;letter-spaci
 }
 </style><style>
 /* ---- Акцент шапки профиля (Premium-кастомизация) ---- */
-body[data-pacc=gold] .pbn,body[data-pacc=gold] .ban{background:linear-gradient(135deg,#f5c542,#b8860b)!important}
-body[data-pacc=cyber] .pbn,body[data-pacc=cyber] .ban{background:linear-gradient(135deg,#00e0ff,#0a3d91)!important}
-body[data-pacc=emerald] .pbn,body[data-pacc=emerald] .ban{background:linear-gradient(135deg,#2ecc71,#0b6b3a)!important}
-body[data-pacc=neon] .pbn,body[data-pacc=neon] .ban{background:linear-gradient(135deg,#a855f7,#6d28d9)!important}
+body[data-pacc=gold] .pbn:not([style*="url("]),body[data-pacc=gold] .ban:not([style*="url("]){background:linear-gradient(135deg,#f5c542,#b8860b)!important}
+body[data-pacc=cyber] .pbn:not([style*="url("]),body[data-pacc=cyber] .ban:not([style*="url("]){background:linear-gradient(135deg,#00e0ff,#0a3d91)!important}
+body[data-pacc=emerald] .pbn:not([style*="url("]),body[data-pacc=emerald] .ban:not([style*="url("]){background:linear-gradient(135deg,#2ecc71,#0b6b3a)!important}
+body[data-pacc=neon] .pbn:not([style*="url("]),body[data-pacc=neon] .ban:not([style*="url("]){background:linear-gradient(135deg,#a855f7,#6d28d9)!important}
 </style><style>
 /* ---- Видео-кружок: круг с кольцом прогресса по краю ---- */
 .vnw{position:relative;width:200px;height:200px;margin:0 auto}
@@ -2976,7 +2976,7 @@ if(Q("#gre"))Q("#gre").onclick=()=>giftRegift(r,g,o);
 if(Q("#gup")){let busy=false;Q("#gup").onclick=async()=>{if(busy)return;if(U||r.u)return Q("#gme").textContent="Уже улучшен";if((ME.stars||0)<100)return Q("#gme").textContent="Недостаточно ⭐";busy=true;const n=r.t%900000+1000;try{await starsSpend(100);try{await it().update({u:1,up:1,n})}catch(x){await starsAdd(100).catch(()=>0);throw x}o.remove();buyFx(g)}catch(e){busy=false;Q("#gme").textContent=e.code==="nostars"?"Недостаточно ⭐":"Ошибка"}}}}
 const PALB=["#3b3a8f","#7a3f9e","#1f6f8b","#9a4a2a","#2f7a4f","#8a3a5a"],SLT=[[6,16,26,-15],[84,12,26,15],[18,54,22,10],[78,52,22,-10],[3,82,24,12],[90,80,24,-12],[32,8,20,5],[66,6,20,-5],[12,36,18,0],[86,34,18,0]];
 function openProfileMD(id){const u=USERS[id],mu=()=>LSL("mu").includes(id),ct=()=>LSL("ctc").includes(id);let PGa=[],tab="tp",CHN=null;
-const o=ov(`<div class="pd" data-prof="1" style="gap:0;padding:0"><div class="pbn" data-uid="${esc(id)}" style="background:linear-gradient(180deg,${PALB[gh(id)%PALB.length]},var(--bg))"><div id="pdc"></div><div class="row" style="justify-content:space-between;position:relative;z-index:2"><button onclick="this.closest('.ov').remove()">←</button></div><div style="display:flex;justify-content:center;position:relative;z-index:2;margin-top:4px">${avHTML(u,"big")}</div><div style="text-align:center;position:relative;z-index:2;margin-top:6px"><h3 style="margin:0;font-size:22px">${esc(u.name)}${vb(u)}${fgHTML(u)}${vtHTML(u)}${(u.prem||0)>Date.now()?'<span class="nvp-star" data-uid="'+esc(id)+'" title="Nova Premium">★</span>':""}${u.mood?" "+esc(u.mood):""}</h3><div class="mu">${onl(u)?'<span style="color:#30d158">● </span>':""}${esc(stat(u))}</div>${nvUnBlock(u)}</div></div>
+const o=ov(`<div class="pd" data-prof="1" style="gap:0;padding:0"><div class="pbn" data-uid="${esc(id)}" style="${u.banner?`background-image:url('${esc(u.banner)}');background-size:cover;background-position:center`:`background:linear-gradient(180deg,${PALB[gh(id)%PALB.length]},var(--bg))`}"><div id="pdc"></div><div class="row" style="justify-content:space-between;position:relative;z-index:2"><button onclick="this.closest('.ov').remove()">←</button></div><div style="display:flex;justify-content:center;position:relative;z-index:2;margin-top:4px">${avHTML(u,"big")}</div><div style="text-align:center;position:relative;z-index:2;margin-top:6px"><h3 style="margin:0;font-size:22px">${esc(u.name)}${vb(u)}${fgHTML(u)}${vtHTML(u)}${(u.prem||0)>Date.now()?'<span class="nvp-star" data-uid="'+esc(id)+'" title="Nova Premium">★</span>':""}${u.mood?" "+esc(u.mood):""}</h3><div class="mu">${onl(u)?'<span style="color:#30d158">● </span>':""}${esc(stat(u))}</div>${nvUnBlock(u)}</div></div>
 <div style="padding:10px 14px 16px;display:grid;gap:10px"><div class="pa">${[["chat",'<i data-lucide="message-circle" data-fb="💬"></i>',"Чат",""],["snd",mu()?'<i data-lucide="bell-off" data-fb="🔕"></i>':'<i data-lucide="bell" data-fb="🔔"></i>',"Звук",""],["call",'<i data-lucide="phone" data-fb="📞"></i>',"Звонок",""],["more","⋯","Ещё","pc-only"],["vcall",'<i data-lucide="video" data-fb="🎥"></i>',"Видео","mob-only"]].map(([k,i,l,c])=>`<button data-k="${k}" class="${c}"><span style="font-size:22px">${i}</span><small>${l}</small></button>`).join("")}</div>
 <div class="row" style="justify-content:center;flex-wrap:wrap;gap:8px">${(u.id===ME.id&&u.stars!=null)?`<span class="chip2" data-k="gifts">Баланс: <i data-lucide="star" class="gstar" data-fb="⭐"></i> ${(u.stars||0).toLocaleString("ru")} ›</span>`:""}</div><div id="pch"></div>
 ${nvUnBlock(u)}${u.phone&&phoneVisible(u)?`<div class="cd2"><div>${esc(u.phone)}</div><div class="mu">Телефон</div></div>`:""}${u.bio?`<div class="cd2"><div>${lk(u.bio)}</div><div class="mu">О себе</div></div>`:""}${u.owner?'<div class="mu" style="padding:0 4px">✔️ Этот аккаунт подтверждён как официальный Nova Messenger.</div>':""}
@@ -3315,20 +3315,33 @@ html body .ov.setpane.setpane .sh>.pd>.set:hover{background:#343436!important}
     av.dataset.nvo=1;
     once(db.collection('gifts/'+uid+'/items')).then(function(docs){
       if(!ov.isConnected) return;
-      var items=docs.map(function(d){return gmI(d.data()||{})}).filter(function(x){return x.g&&!x.hid}).slice(0,5);
-      if(!items.length) return;
+      var owned={};
+      docs.forEach(function(d){ var x=gmI(d.data()||{}); if(x&&x.g&&!x.hid) owned[x.g]=1; });
+      /* на орбиту попадают только ПРИМЕНЁННЫЕ подарки: витрина (до 3) и «рядом с именем».
+         Надетый подарок уже стоит в углу баннера. Нет применённых — орбиты нет. */
+      function orbEl(k){
+        var g2=gmFind(k);
+        if(g2&&g2.f) return gmEl(g2.f,'nvp-orb-i','');
+        var g=null; try{ g=(typeof gFind==='function')&&gFind(k); }catch(e){}
+        if(g&&g.webp) return gmEl(g.webp,'nvp-orb-i','');
+        if(g&&g.e){ var d=document.createElement('div'); d.className='nvp-orb-i nvp-orb-e'; d.textContent=g.e; return d; }
+        return null; /* подарок не найден в каталоге — не рисуем запасную коробку */
+      }
+      var ids=[];
+      (Array.isArray(u.vt)?u.vt:[]).concat(u.fg?[u.fg]:[]).forEach(function(k){
+        if(k&&owned[k]&&k!==u.worn&&ids.indexOf(k)<0) ids.push(k);
+      });
+      var els=[]; ids.forEach(function(k){ if(els.length>=5) return; var e=orbEl(k); if(e) els.push(e); });
+      if(!els.length) return;
       var par=av.offsetParent; if(!par) return;
       if(getComputedStyle(par).position==='static') par.style.position='relative';
       var cx=av.offsetLeft+av.offsetWidth/2, cy=av.offsetTop+av.offsetHeight/2;
-      var R=av.offsetWidth/2+24, orb=document.createElement('div'); orb.className='nvp-orb';
+      var orb=document.createElement('div'); orb.className='nvp-orb';
       orb.style.left=cx+'px'; orb.style.top=cy+'px';
-      items.forEach(function(it,i){
-        var ang=(-90+i*360/items.length)*Math.PI/180;
-        var g2=gmFind(it.g);
-        var el;
-        if(g2&&g2.f){ el=gmEl(g2.f,'nvp-orb-i',''); }
-        else { el=document.createElement('div'); el.className='nvp-orb-i nvp-orb-e'; var gg=(typeof gFind==='function'&&gFind(it.g))||{}; el.textContent=gg.e||'🎁'; }
-        var PP=(window.NV_ORB||[])[i]||[0,-1]; var rr=av.offsetWidth/2; el.style.left=(rr*PP[0]).toFixed(1)+'px'; el.style.top=(rr*PP[1]).toFixed(1)+'px';
+      var LAY={1:[4],2:[1,3],3:[0,4,2],4:[0,1,3,2],5:[0,1,4,3,2]}[els.length];
+      els.forEach(function(el,i){
+        var PP=(window.NV_ORB||[])[LAY[i]]||[0,-1]; var rr=av.offsetWidth/2;
+        el.style.left=(rr*PP[0]).toFixed(1)+'px'; el.style.top=(rr*PP[1]).toFixed(1)+'px';
         el.style.animationDelay=(i*0.45)+'s';
         orb.appendChild(el);
       });
@@ -4474,6 +4487,15 @@ html,body{max-width:100%;overflow-x:hidden}
   };
 })();
 </script>
+<style id="nv-worn-size-guard">
+/* надетый подарок никогда не больше иконки, в каком бы виде он ни рисовался */
+html body .nv-worn{overflow:hidden!important;contain:layout paint}
+html body .nv-worn *{max-width:100%!important;max-height:100%!important}
+html body .nv-worn svg,html body .nv-worn img,html body .nv-worn video,html body .nv-worn canvas,html body .nv-worn .gm-svg,html body .nv-worn .gwebp{width:100%!important;height:100%!important;display:block;object-fit:contain}
+html body .nv-worn .gm-emo{font-size:inherit!important;line-height:1!important}
+/* кольцо — только в подарках, не в профиле */
+html body .nv-worn[data-k="ring"]{display:none!important}
+</style>
 <style id="nv-worn-recent-css">
 /* Кнопки профиля в один ряд, без лишней иконки подарка на баннере */
 html body .pa{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:6px!important}
@@ -4501,6 +4523,7 @@ html body #pdc{display:none!important}
 <script id="nv-worn-recent-js">
 (function(){
   /* ===== 1. Надетый подарок ===== */
+  var NOWORN={ring:1}; /* эти подарки живут только в разделе «Подарки», в профиль не выводятся */
   function gHTML(key){
     if(!key) return '';
     var g2=gmFind(key);
@@ -4516,6 +4539,7 @@ html body #pdc{display:none!important}
   }
   function wornBtn(o,key){
     var pd=o.querySelector('.pd'); if(!pd||pd.querySelector('.nvw-btn')) return;
+    if(NOWORN[key]) return;
     var on=(ME.worn===key);
     var b=document.createElement('button'); b.type='button';
     b.className='nvw-btn'+(on?' off':'');
@@ -4535,7 +4559,7 @@ html body #pdc{display:none!important}
   var prevNvgc=window.nvgcOpen;
   if(typeof prevNvgc==='function') window.nvgcOpen=function(d){
     var card=prevNvgc.apply(this,arguments);
-    if(card&&d&&d.key&&d.owner===ME.id){
+    if(card&&d&&d.key&&d.owner===ME.id&&!NOWORN[d.key]){
       var o=card.parentNode; var foot=card.querySelector('.nvgc-foot');
       var on=(ME.worn===d.key);
       var b=document.createElement('button'); b.type='button'; b.className='nvw-btn'+(on?' off':'');
@@ -4556,7 +4580,7 @@ html body #pdc{display:none!important}
       var uid=uidOf(ov); if(!uid) return;
       var u=uid===ME.id?ME:USERS[uid]; var h=ov.querySelector('h3');
       if(!h) return;
-      var old=h.querySelector('.nv-worn'); var want=u&&u.worn?u.worn:'';
+      var old=h.querySelector('.nv-worn'); var want=u&&u.worn&&!NOWORN[u.worn]?u.worn:'';
       if(old&&old.dataset.k===want) return;
       if(old) old.remove();
       if(!want) return;
@@ -4565,7 +4589,7 @@ html body #pdc{display:none!important}
     });
     var cn=document.getElementById('cNm');
     if(cn&&typeof CUR!=='undefined'&&CUR&&USERS[CUR]){
-      var uw=USERS[CUR]; var oldc=cn.querySelector('.nv-worn'); var wc=uw.worn||'';
+      var uw=USERS[CUR]; var oldc=cn.querySelector('.nv-worn'); var wc=uw.worn&&!NOWORN[uw.worn]?uw.worn:'';
       if(!(oldc&&oldc.dataset.k===wc)){ if(oldc) oldc.remove(); if(wc){ var w2=document.createElement('span'); w2.className='nv-worn'; w2.dataset.k=wc; w2.innerHTML=gHTML(wc); cn.appendChild(w2); } }
     }
   }
@@ -9487,6 +9511,8 @@ html body .ov .pbn .nv-worn img,html body .ov .pf-ban .nv-worn img,html body .ov
 /* 5. синий квадрат N и пустая капсула у ника */
 html body .ov .pf-name .nbadge,html body .ov .pbn h3 .nbadge{display:none!important}
 html body .ov .nvuo{background:rgba(255,255,255,.08)!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;-webkit-text-fill-color:#f2f3f5!important;color:#f2f3f5!important;animation:none!important;border:1px solid rgba(255,255,255,.12)!important}
+/* фото-баннер в шапке чужого профиля: лёгкое затемнение, чтобы читались имя и кнопки */
+html body .ov .pbn[style*="url("]::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.5));z-index:0;pointer-events:none}
 </style>
 <script id="nv-fix-gifts-banner-js">
 (function(){
@@ -9509,11 +9535,17 @@ html body .ov .nvuo{background:rgba(255,255,255,.08)!important;-webkit-backgroun
       ov.querySelectorAll('h3 .vtw,h3 .fgi,h3 .vti,h3 .nbadge').forEach(function(x){ x.remove(); });
       // серый баннер: реально серый (палитра GRAD[3])
       var u=isOwn?ME:USERS[(ov.querySelector('.pbn[data-uid]')||{dataset:{}}).dataset.uid];
-      var cp=u&&u.cp, customized=!!(cp&&(cp.banner||cp.bannerUrl||cp.preset));
-      if(u&&u.grad===3&&!customized){
-        ban.style.setProperty('background',GREY,'important');
-      }else if(!customized){
+      var cp=u&&u.cp, customized=!!(cp&&(cp.banner||cp.bannerUrl||cp.preset)), hasImg=!!(u&&u.banner);
+      if(u&&u.grad===3&&!customized&&!hasImg){
+        ban.style.setProperty('background',GREY,'important'); ban.dataset.nvgrey='1';
+      }else if(ban.dataset.nvgrey){
+        /* серый ставили мы — снимаем только его; загруженную картинку баннера не трогаем */
+        delete ban.dataset.nvgrey;
         ban.style.removeProperty('background');
+        if(hasImg&&!customized){
+          ban.style.setProperty('background-image','url("'+String(u.banner).replace(/["\\()\n\r]/g,'')+'")');
+          ban.style.setProperty('background-size','cover'); ban.style.setProperty('background-position','center');
+        }
       }
     });
   }
