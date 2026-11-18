@@ -8845,4 +8845,46 @@ html body .ov .nvc{max-width:300px!important;width:100%!important;margin:8px aut
 html body .ov .nvc .mw-stage{aspect-ratio:2.05/1!important;height:auto!important;max-height:none!important;margin:0 auto!important}
 html body .ov .nvc .mw-card{aspect-ratio:2.05/1!important;height:auto!important;max-height:none!important}
 </style>
+<style id="nv-own-profile-fix2">
+/* Гирлянда подарков под бейджами — убрана; один надетый подарок и счётчик */
+html body .ov .pf-vt{display:none!important}
+html body .ov .nv-showcase{flex-wrap:nowrap!important;max-width:100%!important;overflow:hidden!important;gap:8px!important}
+html body .ov .nv-gcount{border:0;border-radius:999px;padding:6px 12px;background:rgba(255,255,255,.08);color:#fff;font-size:13px;font-weight:600;white-space:nowrap;cursor:pointer;flex:none}
+html body .ov .nv-gcount:hover{background:rgba(255,255,255,.14)}
+/* NOVA CARD: примерно на 29% ниже */
+html body .ov .nvc .mw-stage,html body .ov .nvc .mw-card{aspect-ratio:2.9/1!important}
+</style>
+<script id="nv-own-profile-fix2-js">
+(function(){
+  var raf=0;
+  function tidy(){
+    document.querySelectorAll('.ov .pf-body').forEach(function(body){
+      var ov=body.closest('.ov');
+      if(!ov||!ov.querySelector('.pav[data-own]')) return;
+      var items=body.querySelectorAll('.pf-vt-item').length;
+      var sh=body.querySelector('.nv-showcase');
+      if(!sh&&items>0){
+        sh=document.createElement('div'); sh.className='nv-showcase';
+        var anchor=body.querySelector('.pf-badges')||body.querySelector('.pf-stat');
+        if(anchor) anchor.insertAdjacentElement('afterend',sh); else body.appendChild(sh);
+      }
+      if(!sh) return;
+      var worn=sh.querySelectorAll('.nv-worn');
+      for(var i=1;i<worn.length;i++) worn[i].remove();
+      var btn=sh.querySelector('.nv-gcount');
+      if(items>0){
+        if(!btn){
+          btn=document.createElement('button'); btn.type='button'; btn.className='nv-gcount';
+          btn.addEventListener('click',function(){ if(typeof showGifts==='function') showGifts(ME.id); });
+          sh.appendChild(btn);
+        }
+        btn.textContent='🎁 Подарки ('+items+')';
+      }else if(btn){ btn.remove(); }
+    });
+  }
+  new MutationObserver(function(){ if(raf) return; raf=requestAnimationFrame(function(){ raf=0; try{tidy();}catch(e){} }); })
+    .observe(document.body,{childList:true,subtree:true});
+  tidy();
+})();
+</script>
 </body></html>
